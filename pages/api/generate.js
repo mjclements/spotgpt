@@ -12,10 +12,24 @@ const completion =  await openai.createCompletion({
   prompt: req.body.playlist + ". separate the song title from the artist name using a comma",
   max_tokens: 500
 });
-// console.log(completion.data.choices[0].text);
-const trimmings = completion.data.choices[0].text.trim(/^[d.]+\./).split(/[\n,]+/);
-//trimmings = completion.data.choices[0].text.trim(/^[d.]+\./);
-//trimmings = trimmings.replace('"','');
-res.status(200).json({ result: trimmings });
+console.log("<==========>");
+trimmings = completion.data.choices[0].text.trim(/^[d.]+\./);
+trimmings = trimmings.replaceAll('"','');
+trimmings = trimmings.replaceAll("\"", '');
+console.log(trimmings);
+console.log("<==========>");
+list = trimmings.split("\n");
+
+//list.forEach((element) => {element = element.trim(/\d+/)});
+
+list = list.map(element => element.replace(/\d+/,''));
+console.log(list);
+console.log("<===========>");
+
+list.forEach( (element, index) => { spl = element.split(","); element = {song: spl[0], artist: spl[1]}; list[index] = element;});
+
+console.log(list);
+
+res.status(200).json({ result: list });
 
 }
