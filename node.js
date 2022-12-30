@@ -9,11 +9,11 @@ const openai = new OpenAIApi(configuration);
 
 const completion =  await openai.createCompletion({
   model: "text-davinci-002",
-  prompt: "Give me a JSON object I can use on the spotify API to create a playlsit of 10 jazz songs",
+  prompt: "List 10 Happy Songs and who they are by",
   max_tokens: 500
 });
-console.log(completion.data.choices);
-
+console.log(completion.data.choices[0].text);
+console.log(completion.data.choices[0].text.split("\n"));
 }
 
 execu();
