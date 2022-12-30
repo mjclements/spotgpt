@@ -13,7 +13,11 @@ const completion =  await openai.createCompletion({
   max_tokens: 500
 });
 console.log(completion.data.choices[0].text);
-console.log(completion.data.choices[0].text.trim(/^[d.]+\./).split(/[\n,]+/));
+//console.log(completion.data.choices[0].text.trim(/^[d.]+\./).split(/[\n,]+/));
+
+trimmings = completion.data.choices[0].text.trim(/^[d.]+\./);
+trimmings = trimmings.replace('"','');
+console.log(trimmings);
 }
 
 execu("happy jazz songs");
