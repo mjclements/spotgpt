@@ -36,5 +36,5 @@ async function searchTrack(artist, name) {
 
 // Example usage: search for a track with the artist "Drake"
 searchTrack("Blanda", "Adhesive").then(track => {
-  console.log(track);  // prints the name of the track
+  console.log(track.uri);  // prints the name of the track
 });
