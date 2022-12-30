@@ -11,7 +11,7 @@ async function searchTrack(artist, name) {
   const clientSecret = configuration.SEC;
 
   // Use the Spotify API to search for a track with the given artist
-  const searchUrl = `https://api.spotify.com/v1/search?q=artist:${artist}&name= &type=track`;
+  const searchUrl = `https://api.spotify.com/v1/search?q=artist:${artist}%20track:${name}&type=track`;
   const authOptions = {
     method: 'POST',
     headers: {
@@ -35,6 +35,6 @@ async function searchTrack(artist, name) {
 }
 
 // Example usage: search for a track with the artist "Drake"
-searchTrack("Drake").then(track => {
+searchTrack("Blanda", "Adhesive").then(track => {
   console.log(track);  // prints the name of the track
 });
