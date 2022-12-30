@@ -5,7 +5,7 @@ const configuration = {
   SEC : process.env.SPOT_API_KEY,
 };
 
-async function searchTrack(artist, name) {
+export default async function searchTrack(artist, name) {
   // Replace YOUR_CLIENT_ID and YOUR_CLIENT_SECRET with your own Spotify API credentials
   const clientId = configuration.ID;
   const clientSecret = configuration.SEC;
@@ -35,6 +35,6 @@ async function searchTrack(artist, name) {
 }
 
 // Example usage: search for a track with the artist "Drake"
-searchTrack("Blanda", "Adhesive").then(track => {
-  console.log(track.uri);  // prints the name of the track
-});
+// searchTrack("Blanda", "Adhesive").then(track => {
+//   console.log(track.uri);  // prints the name of the track
+// });
