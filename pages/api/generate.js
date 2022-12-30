@@ -13,12 +13,12 @@ const completion =  await openai.createCompletion({
   max_tokens: 500
 });
 console.log("<==========>");
-trimmings = completion.data.choices[0].text.trim(/^[d.]+\./);
+let trimmings = completion.data.choices[0].text.trim(/^[d.]+\./);
 trimmings = trimmings.replaceAll('"','');
 trimmings = trimmings.replaceAll("\"", '');
 console.log(trimmings);
 console.log("<==========>");
-list = trimmings.split("\n");
+let list = trimmings.split("\n");
 
 //list.forEach((element) => {element = element.trim(/\d+/)});
 
@@ -26,10 +26,10 @@ list = list.map(element => element.replace(/\d+/,''));
 console.log(list);
 console.log("<===========>");
 
-list.forEach( (element, index) => { spl = element.split(","); element = {song: spl[0], artist: spl[1]}; list[index] = element;});
+list.forEach( (element, index) => { const spl = element.split(","); element = {song: spl[0], artist: spl[1]}; list[index] = element;});
 
 console.log(list);
 
-res.status(200).json({ result: list });
+res.status(200).json({ result: completion.data.choices[0].text });
 
 }
